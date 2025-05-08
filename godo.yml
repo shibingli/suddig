@@ -1,0 +1,7 @@
+commands:
+  test:
+    run: go test ./...
+    descriptions: "Runs all the tests in the project"
+  testv:
+    run: go test ./... -v
+    descriptions: "Runs all the tests in the project but with the -v flag"
