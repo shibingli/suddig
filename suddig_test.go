@@ -62,3 +62,24 @@ func TestMatch(t *testing.T) {
 	}
 
 }
+
+func TestRankMatches(t *testing.T) {
+	arr := []string{"a", "ab", "abc", "abcd"}
+	out := suddig.RankMatches("abcd", arr)
+
+	for i := range out {
+		if out[i] != arr[len(arr)-i-1] {
+			t.FailNow()
+		}
+	}
+}
+
+func TestFindMatches(t *testing.T) {
+	arr := []string{"a", "a", "a", "bbb"}
+	out := suddig.RankMatches("bbb", arr)
+
+	if out[0] != "bbb" {
+		t.FailNow()
+	}
+
+}
