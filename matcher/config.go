@@ -4,10 +4,10 @@ package matcher
 type StringFunc func(string) string
 
 // Calculates the distance between the two strings.
-type DistanceFunc func(string, string) int32
+type DistanceFunc func(string, string) float64
 
 // Normalizes the score to a similarity percentage.
-type ScoreFunc func(string, string, int32) float64
+type ScoreFunc func(string, string, float64) float64
 
 type Config struct {
 	// A decimal number from 0-1

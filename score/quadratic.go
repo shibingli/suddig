@@ -4,8 +4,8 @@ package score
 // punishing mediocre matches,
 // while high-score plateau keeps ratios above ~0.9 near 0.81 (0.9²),
 // preserving top matches.
-func Quadratic(query, target string, dist int32) float64 {
+func Quadratic(query, target string, dist float64) float64 {
 	maxDist := max(len(query), len(target))
-	ratio := 1.0 - float64(dist)/float64(maxDist)
+	ratio := 1.0 - dist/float64(maxDist)
 	return ratio * ratio
 }

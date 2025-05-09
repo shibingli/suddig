@@ -16,7 +16,7 @@ func (m *Matcher) Match(query, target string) bool {
 	return score >= m.config.MinScore
 }
 
-func (m *Matcher) Distance(query, target string) int32 {
+func (m *Matcher) Distance(query, target string) float64 {
 	a := m.config.StringFunc(query)
 	b := m.config.StringFunc(target)
 	return m.config.DistanceFunc(a, b)

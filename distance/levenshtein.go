@@ -2,7 +2,7 @@ package distance
 
 // The Levenshtein algorithm returns a number based on how many edits is needed for the query to match the target.
 // O(m*n) where m & n are the length of the input strigns
-func LevenshteinDistance(query, target string) int32 {
+func LevenshteinDistance(query, target string) float64 {
 	// Early exit if the strings are the same
 	if query == target {
 		return 0
@@ -40,5 +40,5 @@ func LevenshteinDistance(query, target string) int32 {
 	}
 
 	// Return the distance
-	return matrix[len(query)][len(target)]
+	return float64(matrix[len(query)][len(target)])
 }
