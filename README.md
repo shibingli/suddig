@@ -10,8 +10,7 @@ A fast, flexible, and modular fuzzy finder library for Go. Built for both quick,
 
 * **Modular Architecture**: Swap or extend normalization, distance, and scoring components.
 * **Simple API**: Call `suddig.Match`, `suddig.Distance`, `suddig.Score`, `suddig.FindMatches` & `suddig.RankMatches` out of the box.
-* **Advanced Configuration**: Instantiate a `matcher.Matcher` with custom `Config` to tweak behavior.
-* **Lightweight**: No external dependencies, minimal overhead.
+* **Advanced Configuration**: Instantiate a `matcher.Matcher` with custom `configs.Config` to tweak behavior.
 
 ---
 
@@ -20,3 +19,14 @@ A fast, flexible, and modular fuzzy finder library for Go. Built for both quick,
 ```bash
 go get github.com/yourusername/suddig
 ```
+
+## Goals
+
+The goal is to support as many different distance algorithms,
+and give the tools needed for both simple and compelx usecase.
+
+---
+
+## Contribution
+
+Please add any score, distance or configs you feel are missing, and submit a PR.
