@@ -1,10 +1,12 @@
 package matcher
 
+import "github.com/VincentBrodin/suddig/configs"
+
 type Matcher struct {
-	config Config
+	config configs.Config
 }
 
-func New(config Config) *Matcher {
+func New(config configs.Config) *Matcher {
 	return &Matcher{config: config}
 }
 

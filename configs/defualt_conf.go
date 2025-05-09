@@ -1,9 +1,18 @@
-package matcher
+package configs
 
 import (
 	"github.com/VincentBrodin/suddig/distance"
 	"github.com/VincentBrodin/suddig/score"
 )
+
+func Defualt() Config {
+	return Config{
+		MinScore:     0.8,
+		StringFunc:   DefualtString,
+		DistanceFunc: DefualtDistance,
+		ScoreFunc:    DefualtScore,
+	}
+}
 
 // Points to the distance/LevenshteinDistance function
 func DefualtDistance(query, target string) float64 {
@@ -18,13 +27,4 @@ func DefualtString(input string) string {
 // Linear function for the score
 func DefualtScore(query, target string, dist float64) float64 {
 	return score.Linear(query, target, dist)
-}
-
-func DefualtConfig() Config {
-	return Config{
-		MinScore:     0.8,
-		StringFunc:   DefualtString,
-		DistanceFunc: DefualtDistance,
-		ScoreFunc:    DefualtScore,
-	}
 }

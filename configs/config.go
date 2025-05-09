@@ -1,4 +1,4 @@
-package matcher
+package configs
 
 // Takes a string in and returns a proccesed string.
 type StringFunc func(string) string
