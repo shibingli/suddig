@@ -19,12 +19,3 @@ type Config struct {
 	// Takes the 2 inputs strings and the distance, and returns a score value
 	ScoreFunc ScoreFunc
 }
-
-func DefualtConfig() Config {
-	return Config{
-		MinScore: 0.8,
-		StringFunc: DefualtString,
-		DistanceFunc: DefualtDistance,
-		ScoreFunc: DefualtScore,
-	}
-}

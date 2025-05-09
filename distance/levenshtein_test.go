@@ -47,4 +47,3 @@ func TestLevenshteinRepeating(t *testing.T) {
 		t.FailNow()
 	}
 }
-

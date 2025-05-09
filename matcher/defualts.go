@@ -19,3 +19,12 @@ func DefualtString(input string) string {
 func DefualtScore(query, target string, dist int32) float64 {
 	return score.Linear(query, target, dist)
 }
+
+func DefualtConfig() Config {
+	return Config{
+		MinScore:     0.8,
+		StringFunc:   DefualtString,
+		DistanceFunc: DefualtDistance,
+		ScoreFunc:    DefualtScore,
+	}
+}

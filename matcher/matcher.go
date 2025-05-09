@@ -1,6 +1,5 @@
 package matcher
 
-
 type Matcher struct {
 	config Config
 }
@@ -16,6 +15,7 @@ func (m *Matcher) Match(query, target string) bool {
 	score := m.config.ScoreFunc(a, b, dist)
 	return score >= m.config.MinScore
 }
+
 func (m *Matcher) Distance(query, target string) int32 {
 	a := m.config.StringFunc(query)
 	b := m.config.StringFunc(target)
