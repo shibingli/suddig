@@ -17,7 +17,7 @@ A fast, flexible, and modular fuzzy finder library for Go. Built for both quick,
 ## Installation
 
 ```bash
-go get github.com/yourusername/suddig
+go get github.com/VincentBrodin/suddig
 ```
 
 ---
