@@ -12,6 +12,7 @@ A fast, flexible, and modular fuzzy finder library for Go. Built for both quick,
 * **Simple API**: Call `suddig.Match`, `suddig.Distance`, `suddig.Score`, `suddig.FindMatches` & `suddig.RankMatches` out of the box.
 * **Advanced Configuration**: Instantiate a `matcher.Matcher` with custom `configs.Config` to tweak behavior.
 * **Parallel Processing**: Leverage all available CPU cores to perform matching and ranking in parallel—ideal for large datasets, with near-linear speedups and minimal overhead.
+* **Mutliple Distance Algorithms**: Both `Levenshtein` & `Damerau Levenshtein` are supported out of the box, and you can easily add more.
 
 ---
 
