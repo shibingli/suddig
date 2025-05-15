@@ -20,6 +20,42 @@ A fast, flexible, and modular fuzzy finder library for Go. Built for both quick,
 go get github.com/yourusername/suddig
 ```
 
+---
+
+## Usage
+
+```go
+package main
+
+import (
+	"fmt"
+	"os"
+
+	"github.com/VincentBrodin/suddig"
+)
+
+func main() {
+	args := os.Args[1:]
+	argc := len(args)
+
+	if argc < 2 {
+		fmt.Println("Need 2 arguments")
+		os.Exit(1)
+	}
+	s1, s2 := args[0], args[1]
+
+	match := suddig.Match(s1, s2)
+
+	if match {
+		fmt.Printf("%s and %s match!\n", s1, s2)
+	} else {
+		fmt.Printf("%s and %s do not match\n", s1, s2)
+	}
+}
+```
+
+---
+
 ## Goals
 
 The goal is to support as many different distance algorithms,
