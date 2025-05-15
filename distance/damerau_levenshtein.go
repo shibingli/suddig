@@ -6,6 +6,7 @@ package distance
 // The Damerau–Levenshtein distance differs from the classical 
 // Levenshtein distance by including transpositions among its allowable operations
 // in addition to the three classical single-character edit operations (insertions, deletions and substitutions).
+// This is the Osa version of the damerau levenshtein distance
 func DamerauLevenshteinDistance(s1, s2 string) float64 {
 	// Early exit if the strings are the same
 	if s1 == s2 {
