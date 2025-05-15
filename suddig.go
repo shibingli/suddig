@@ -1,8 +1,6 @@
 package suddig
 
 import (
-	"sort"
-
 	"github.com/VincentBrodin/suddig/configs"
 	"github.com/VincentBrodin/suddig/matcher"
 )
@@ -36,44 +34,13 @@ func Distance(query, target string) float64 {
 // to query is ≥ 80%.
 func FindMatches(query string, targets []string) []string {
 	m := matcher.New(configs.Defualt())
-	arr := make([]string, len(targets))
-	i := 0
-	for _, s := range targets {
-		if m.Match(query, s) {
-			arr[i] = s
-			i++
-		}
-	}
-
-	return arr[:i]
+	return m.ParallelMatch(query, targets)
 }
 
-// RankMatches returns all strings in targets sorted in
-// descending order of their similarity to query.
-func RankMatches(query string, targets []string) []string {
+// RankMatches returns all the similarity score for all strings in the given array.
+// The returned array matches the targets array.
+func RankMatches(query string, targets []string) []float64 {
 	m := matcher.New(configs.Defualt())
-	arr := make([]struct {
-		s     string
-		score float64
-	}, len(targets))
-	for i, s := range targets {
-		arr[i] = struct {
-			s     string
-			score float64
-		}{
-			s:     s,
-			score: m.Score(query, s),
-		}
+	return m.ParallelRank(query, targets)
 
-	}
-
-	sort.Slice(arr, func(i, j int) bool {
-		return arr[i].score > arr[j].score
-	})
-	out := make([]string, len(targets))
-	for i, v := range arr {
-		out[i] = v.s
-	}
-
-	return out
 }
