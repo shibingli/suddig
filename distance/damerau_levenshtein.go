@@ -1,12 +1,13 @@
 package distance
 
 // Sources: 
-// - https://en.wikipedia.org/wiki/Levenshtein_distance
+// - https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance
 
-// The Levenshtein algorithm returns a number based on how many edits is needed for the query to match the target.
-// O(m*n) where m & n are the length of the input strigns
-// Levenshtein checks the three classical single-character edit operations (insertions, deletions and substitutions).
-func LevenshteinDistance(s1, s2 string) float64 {
+// The Damerau–Levenshtein distance differs from the classical 
+// Levenshtein distance by including transpositions among its allowable operations
+// in addition to the three classical single-character edit operations (insertions, deletions and substitutions).
+// This is the Osa version of the damerau levenshtein distance
+func DamerauLevenshteinDistance(s1, s2 string) float64 {
 	// Early exit if the strings are the same
 	if s1 == s2 {
 		return 0
@@ -40,9 +41,15 @@ func LevenshteinDistance(s1, s2 string) float64 {
 				matrix[i][j+1]+1,
 				matrix[i+1][j]+1,
 				matrix[i][j]+subCost)
+
+			if i >= 1 && j >= 1 && s1[i] == s2[j-1] && s1[i-1] == s2[j] {
+				matrix[i+1][j+1] = min(matrix[i+1][j+1], matrix[i-1][j-1]+1)
+			}
 		}
 	}
 
 	// Return the distance
 	return float64(matrix[len(s1)][len(s2)])
 }
+
+

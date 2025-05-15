@@ -3,6 +3,7 @@ package suddig
 import (
 	"sort"
 
+	"github.com/VincentBrodin/suddig/configs"
 	"github.com/VincentBrodin/suddig/matcher"
 )
 
@@ -18,7 +19,7 @@ func Match(query, target string) bool {
 // Returns a normalized linear score based on distance.
 // See Distance for the raw difference between the strings.
 func Score(query, target string) float64 {
-	m := matcher.New(matcher.DefualtConfig())
+	m := matcher.New(configs.Defualt())
 	return m.Score(query, target)
 }
 
@@ -26,15 +27,15 @@ func Score(query, target string) float64 {
 // The Levenshtein algorithm returns a number based on how many edits is needed for the query to match the target.
 // O(m*n) where m & n are the length of the input strigns.
 // See Score for the percental difference between the strings.
-func Distance(query, target string) int32 {
-	m := matcher.New(matcher.DefualtConfig())
+func Distance(query, target string) float64 {
+	m := matcher.New(configs.Defualt())
 	return m.Distance(query, target)
 }
 
 // FindMatches returns all strings in targets whose similarity
 // to query is ≥ 80%.
 func FindMatches(query string, targets []string) []string {
-	m := matcher.New(matcher.DefualtConfig())
+	m := matcher.New(configs.Defualt())
 	arr := make([]string, len(targets))
 	i := 0
 	for _, s := range targets {
@@ -50,7 +51,7 @@ func FindMatches(query string, targets []string) []string {
 // RankMatches returns all strings in targets sorted in
 // descending order of their similarity to query.
 func RankMatches(query string, targets []string) []string {
-	m := matcher.New(matcher.DefualtConfig())
+	m := matcher.New(configs.Defualt())
 	arr := make([]struct {
 		s     string
 		score float64
