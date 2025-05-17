@@ -1,6 +1,6 @@
 package distance
 
-// Sources: 
+// Sources:
 // - https://en.wikipedia.org/wiki/Levenshtein_distance
 
 // The Levenshtein algorithm returns a number based on how many edits is needed for the query to match the target.

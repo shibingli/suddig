@@ -1,9 +1,9 @@
 package distance
 
-// Sources: 
+// Sources:
 // - https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance
 
-// The Damerau–Levenshtein distance differs from the classical 
+// The Damerau–Levenshtein distance differs from the classical
 // Levenshtein distance by including transpositions among its allowable operations
 // in addition to the three classical single-character edit operations (insertions, deletions and substitutions).
 // This is the Osa version of the damerau levenshtein distance
@@ -51,5 +51,3 @@ func DamerauLevenshteinDistance(s1, s2 string) float64 {
 	// Return the distance
 	return float64(matrix[len(s1)][len(s2)])
 }
-
-
