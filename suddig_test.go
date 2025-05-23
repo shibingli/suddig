@@ -62,6 +62,7 @@ func TestMatch(t *testing.T) {
 	}
 
 }
+
 //
 // func TestRankMatches(t *testing.T) {
 // 	arr := []string{"a", "ab", "abc", "abcd"}
