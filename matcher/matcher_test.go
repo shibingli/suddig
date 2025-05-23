@@ -1,20 +1,30 @@
 package matcher_test
 
-//EXPENSIVE
+import (
+	"testing"
 
-// import (
-// 	"io"
-// 	"net/http"
-// 	"strings"
-// 	"testing"
-// 	"time"
-//
-// 	"github.com/VincentBrodin/suddig/configs"
-// 	"github.com/VincentBrodin/suddig/matcher"
-// )
-//
+	"github.com/VincentBrodin/suddig/configs"
+	"github.com/VincentBrodin/suddig/matcher"
+)
+
+func TestParalellelMatcher(t *testing.T) {
+	m := matcher.New(configs.DamerauLevenshtein())
+	items := []string{"Test", "Hello", "Cool", "World", "Golang", "House", "Boat", "Other stuff"}
+	results := m.ParallelMatch("test", items)
+	t.Log(results)
+	t.Log(items)
+}
+
+func TestParalellelRanker(t *testing.T) {
+	m := matcher.New(configs.DamerauLevenshtein())
+	items := []string{"Test", "Hello", "Cool", "World", "Golang", "House", "Boat", "Other stuff"}
+	results := m.ParallelRank("test", items)
+	t.Log(results)
+	t.Log(items)
+}
+
 // func TestParalelleMatcher(t *testing.T) {
-// 	m := matcher.New(configs.Defualt())
+// 	m := matcher.New(configs.Levenshtein())
 // 	url := "https://sample-files.com/downloads/documents/txt/long-doc.txt"
 // 	resp, err := http.Get(url)
 // 	if err != nil {
@@ -47,17 +57,17 @@ package matcher_test
 //
 //
 // func TestParalelleRanker(t *testing.T) {
-// 	m := matcher.New(configs.Defualt())
+// 	m := matcher.New(configs.DamerauLevenshtein())
 // 	url := "https://sample-files.com/downloads/documents/txt/long-doc.txt"
 // 	resp, err := http.Get(url)
 // 	if err != nil {
 // 		t.FailNow()
 // 	}
-// 	b, err := io.ReadAll(resp.Body)
+// 	body, err := io.ReadAll(resp.Body)
 // 	if err != nil {
 // 		t.FailNow()
 // 	}
-// 	str := string(b)
+// 	str := string(body)
 // 	in := strings.Split(str, " ")
 // 	for range 10 {
 // 		in = append(in, in...)
@@ -66,12 +76,14 @@ package matcher_test
 // 	t.Logf("Size: %d\n", len(in))
 //
 // 	start := time.Now()
-// 	_ = m.ParallelRank("lorem", in)
+// 	a := m.ParallelRank("l", in)
+// 	t.Log(len(a))
 // 	elapsed := time.Since(start)
 // 	t.Logf("Paralelle took %s\n", elapsed)
 //
 // 	start = time.Now()
-// 	_ = m.RankMatches("lorem", in)
+// 	b := m.RankMatches("lorem", in)
+// 	t.Log(len(b))
 // 	elapsed = time.Since(start)
 // 	t.Logf("Normal took %s\n", elapsed)
 // }
