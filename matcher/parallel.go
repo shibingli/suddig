@@ -24,6 +24,10 @@ func (m *Matcher) ParallelMatch(query string, targets []string) []string {
 
 		go func(idx, lo, hi int) {
 			defer wg.Done()
+			if lo >= hi { // This solves the bug were the amount of items is less then the amount of workers making some workers empty
+				results[idx] = []string{}
+				return
+			}
 			buf := make([]string, 0, hi-lo)
 			for _, s := range targets[lo:hi] {
 				if m.Match(query, s) {
@@ -64,6 +68,10 @@ func (m *Matcher) ParallelRank(query string, targets []string) []float64 {
 
 		go func(idx, lo, hi int) {
 			defer wg.Done()
+			if lo >= hi { // This solves the bug were the amount of items is less then the amount of workers making some workers empty
+				results[idx] = []float64{}
+				return
+			}
 			buf := make([]float64, hi-lo)
 			for i, s := range targets[lo:hi] {
 				buf[i] = m.Score(query, s)
