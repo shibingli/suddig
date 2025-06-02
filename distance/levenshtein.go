@@ -12,25 +12,27 @@ func LevenshteinDistance(s1, s2 string) float64 {
 		return 0
 	}
 
+	r1, r2 := []rune(s1), []rune(s2) // Use runes to solve problem with non ascii characters counting as 2 or more bytes
+
 	// Create the matrix matrix
-	matrix := make([][]int32, len(s1)+1)
+	matrix := make([][]int32, len(r1)+1)
 	for i := range matrix {
-		matrix[i] = make([]int32, len(s2)+1)
+		matrix[i] = make([]int32, len(r2)+1)
 	}
 
 	// Set prefixes AKA setting the edges
-	for i := range max(len(s1), len(s2)) + 1 {
-		if len(s1) >= i {
+	for i := range max(len(r1), len(r2)) + 1 {
+		if len(r1) >= i {
 			matrix[i][0] = int32(i)
 		}
-		if len(s2) >= i {
+		if len(r2) >= i {
 			matrix[0][i] = int32(i)
 		}
 	}
 
 	// Fill the matrix
-	for j, jr := range s2 {
-		for i, ir := range s1 {
+	for j, jr := range r2 {
+		for i, ir := range r1 {
 			var subCost int32 = 1
 			if jr == ir {
 				subCost = 0
@@ -44,5 +46,5 @@ func LevenshteinDistance(s1, s2 string) float64 {
 	}
 
 	// Return the distance
-	return float64(matrix[len(s1)][len(s2)])
+	return float64(matrix[len(r1)][len(r2)])
 }
