@@ -47,3 +47,11 @@ func TestLevenshteinRepeating(t *testing.T) {
 		t.FailNow()
 	}
 }
+
+func TestLevenshteinNonAscii(t *testing.T) {
+	dist := distance.LevenshteinDistance("båt", "bat")
+	t.Logf("Expected 1 got %f\n", dist)
+	if dist != 1 {
+		t.FailNow()
+	}
+}
