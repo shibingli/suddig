@@ -1,6 +1,7 @@
 package matcher_test
 
 import (
+	"sort"
 	"testing"
 
 	"github.com/VincentBrodin/suddig/configs"
@@ -20,6 +21,26 @@ func TestParalellelRanker(t *testing.T) {
 	items := []string{"Test", "Hello", "Cool", "World", "Golang", "House", "Boat", "Other stuff"}
 	results := m.ParallelRank("test", items)
 	t.Log(results)
+	t.Log(items)
+}
+
+func TestTokenMatcher(t *testing.T) {
+	m := matcher.New(configs.DamerauLevenshtein())
+	items := []string{"Hello", "Hello World", "Hello House", "World", "Best World", "House Top", "Boat Low", "Other stuff"}
+	results := m.RankMatchesTokenized("Hello World", m.TokenizeAll(items))
+	sort.Slice(items, func(i, j int) bool {
+		return results[i] > results[j]
+	})
+	t.Log(items)
+}
+
+func TestTokenMatcherParalellel(t *testing.T) {
+	m := matcher.New(configs.DamerauLevenshtein())
+	items := []string{"Hello", "Hello World", "Hello House", "World", "Best World", "House Top", "Boat Low", "Other stuff"}
+	results := m.ParallelRankTokenized("Hello World", m.TokenizeAll(items))
+	sort.Slice(items, func(i, j int) bool {
+		return results[i] > results[j]
+	})
 	t.Log(items)
 }
 

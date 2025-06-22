@@ -13,5 +13,6 @@ func Levenshtein() Config {
 		StringFunc:   strings.ToLower,
 		DistanceFunc: distance.LevenshteinDistance,
 		ScoreFunc:    score.Linear,
+		TokenFunc:    DefualtToken,
 	}
 }

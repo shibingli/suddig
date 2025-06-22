@@ -9,6 +9,9 @@ type DistanceFunc func(string, string) float64
 // Normalizes the score to a similarity percentage.
 type ScoreFunc func(string, string, float64) float64
 
+// Takes a string and returns a array of tokens
+type TokenFunc func(string) []string
+
 type Config struct {
 	// A decimal number from 0-1
 	MinScore float64
@@ -18,4 +21,6 @@ type Config struct {
 	DistanceFunc DistanceFunc
 	// Takes the 2 inputs strings and the distance, and returns a score value
 	ScoreFunc ScoreFunc
+	// Used to by the RankMatchesTokenized to tokenize the input and by the TokenizeAll function to tokenize the slic slice
+	TokenFunc TokenFunc
 }
