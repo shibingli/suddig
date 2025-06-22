@@ -1,6 +1,8 @@
 package configs
 
 import (
+	"strings"
+
 	"github.com/VincentBrodin/suddig/distance"
 	"github.com/VincentBrodin/suddig/score"
 )
@@ -11,6 +13,7 @@ func Defualt() Config {
 		StringFunc:   DefualtString,
 		DistanceFunc: DefualtDistance,
 		ScoreFunc:    DefualtScore,
+		TokenFunc:    DefualtToken,
 	}
 }
 
@@ -27,4 +30,9 @@ func DefualtString(input string) string {
 // Linear function for the score
 func DefualtScore(query, target string, dist float64) float64 {
 	return score.Linear(query, target, dist)
+}
+
+// Splits tokens based on spaces
+func DefualtToken(str string) []string {
+	return strings.Split(str, " ")
 }

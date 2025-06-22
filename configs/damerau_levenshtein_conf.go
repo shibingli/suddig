@@ -13,5 +13,6 @@ func DamerauLevenshtein() Config {
 		StringFunc:   strings.ToLower,
 		DistanceFunc: distance.DamerauLevenshteinDistance,
 		ScoreFunc:    score.Linear,
+		TokenFunc:    DefualtToken,
 	}
 }
